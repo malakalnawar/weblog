@@ -1,9 +1,10 @@
-const argon2 = require('argon2');
 const dbq = require('./db-queries.js');
 const { body, validationResult } = require('express-validator');
 
+const bcrypt = require('bcrypt');
+
 /**
- * Middleware for verifying password using Argon2.
+ * Middleware for verifying password using bcrypt.
  * @param {string} hashedPassword - The hashed password stored in the database.
  * @param {string} password - The password provided by the user for verification.
  * @param {Object} res - The response object.
@@ -11,10 +12,14 @@ const { body, validationResult } = require('express-validator');
  */
 const verifyPassword = async (hashedPassword, password, res, next) => {
     try {
-        const passwordMatch = await argon2.verify(hashedPassword, password);
+        // Compare the provided password with the hashed password from the database
+        const passwordMatch = await bcrypt.compare(password, hashedPassword);
+        
         if (!passwordMatch) {
             return res.status(401).send('401 Unauthorized: Invalid password');
         }
+        
+        // If password matches, proceed to the next middleware
         next();
     } catch (error) {
         console.error('Error during password verification:', error);

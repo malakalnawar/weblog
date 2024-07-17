@@ -1,6 +1,6 @@
 # Weblog
 
-This is a blogging web application. It is password protected, and all passwords are stored using Argon2 salting and hashing for user security and privacy. It can be used as a personal blog with one author, or a hub of multiple blogs with many authors (you decide). The front-end styling was inspired by the 16-bit era, hence the use of simple colors and fonts.
+This is a blogging web application. It is password protected, and all passwords are stored using salting and hashing for user security and privacy. It can be used as a personal blog with one author, or a hub of multiple blogs with many authors (you decide). The front-end styling was inspired by the 16-bit era, hence the use of simple colors and fonts.
 
 ## Instructions
 
@@ -46,7 +46,7 @@ All user accounts will appear on the 'Accounts' page (accessible by admins only)
 The author's 'Dashboard' page (accessible by admins and authors only) will have a list of all drafts and published articles for the signed in user. There you can edit, delete and publish existing articles and drafts. Click the 'Draft +' button to create a new draft.
 
 ## Libraries
-- Argon2 (for salting and hashing passwords)
+- Bcrypt (for salting and hashing passwords)
 - Bootstrap (for styling)
 - Data-FNS (for data/time formating)
 - Express-session (for user sessions when users log in)

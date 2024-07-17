@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require('path');
-const argon2 = require('argon2');
+const bcrypt = require('bcrypt');
 const mw = require('../middleware.js');
 const dbq = require('../db-queries.js');
 const dateFns = require('date-fns');
@@ -158,8 +158,8 @@ router.post('/user-signup', [
             return res.status(400).send('400 Bad Request: Username or email already exists');
         }
 
-        // Hash the password using argon2
-        const hashedPassword = await argon2.hash(password);
+        // Hash the password using bcrypt
+        const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
 
         // Insert user into database with hashed password
         dbq.insertUser(username, email, hashedPassword, role, function(err) {

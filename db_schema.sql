@@ -125,37 +125,37 @@ CREATE TABLE IF NOT EXISTS Interactions (
 -- INSERT INTO Users (username, email, password, role) VALUES (
 --     'admin', 
 --     'admin@example.com', 
---     '$argon2id$v=19$m=65536,t=3,p=4$OKibhbXegqIfbFSZaqBvxA$+TbNuYyrLXoS/S7bC+vwvv5GA6x4T5EkN1qU5Ni0YlU', 
+--     '$2b$10$XHurygrNXs4fidQqnqquZu9VtYTps8Xl/dz17EbxdVW5HJGeax86S', 
 --     'admin'
 -- );
 -- INSERT INTO Users (username, email, password, role) VALUES (
 --     'author1', 
 --     'author1@example.com', 
---     '$argon2id$v=19$m=65536,t=3,p=4$PaP4koyAfI69gcWh48G7Ow$2d2/uSR63ZGBXuBXltFH3vfSHlD/vDj9qBdsOkNWwNA', 
+--     '$2b$10$4pP4VaywsmN33ukuc4SUh.mLhqlxjwaNyJwZ8ixHdK/LCguZ5UFuy', 
 --     'author'
 -- );
 -- INSERT INTO Users (username, email, password, role) VALUES (
 --     'author2', 
 --     'author2@example.com', 
---     '$argon2id$v=19$m=65536,t=3,p=4$fEvGfehWOWwykkXf4J5BTw$wPsKJ34KwLVLrx57Nms1NX0XbM9wXi5irW6WqrUC/ZI', 
+--     '$2b$10$wpPbJzgu9AEzWUXgwddd8ONuPHiwBOm7CWATW3oe9c2KETEMfYwgu', 
 --     'author'
 -- );
 -- INSERT INTO Users (username, email, password, role) VALUES (
 --     'user1', 
 --     'user1@example.com', 
---     '$argon2id$v=19$m=65536,t=3,p=4$xMLurKdAk4ptcdMS3AlxFA$VbwBAGLmfyF1jc244ULZScs4afkIokD3XZYGMv1T0sA', 
+--     '$2b$10$O3wGIDS0Rouh0e8gBlOdc.fjyDXBB1TTvDvus7f2pdxKxPzRdzyJ6', 
 --     'user'
 -- );
 -- INSERT INTO Users (username, email, password, role) VALUES (
 --     'user2', 
 --     'user2@example.com', 
---     '$argon2id$v=19$m=65536,t=3,p=4$IdJsZkZSG53X7flnFuqZ9Q$LJZnHnHkuSLNSGrr0K9h4sbN9XJmR5/o0suTkdDpE7A', 
+--     '$2b$10$Iua4x3k09k290ohgwvPxz.Ty.MOm72dMWZj.woY4AQOa2ayJZ67HW', 
 --     'user'
 -- );
 -- INSERT INTO Users (username, email, password, role) VALUES (
 --     'user3', 
 --     'user3@example.com', 
---     '$argon2id$v=19$m=65536,t=3,p=4$10Nh0qCD8QqHcsVeRbiSmg$SPpHYxIwyd4NvXnZKOIv/cfYa5aERUyxnv57buro8cs', 
+--     '$2b$10$4uzN4y6Ne2.8vAKyNkt0/uJ41sL.7XpuIvqXp7ewh0ifd8Xs.9zBG', 
 --     'user'
 -- );
 
