@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
+            <h1 class="h3">Create Account</h1>
+        </header>
+        
+        <!-- Navigation -->
+        <nav class="nav-bar mb-4">
+            <button onclick="window.history.back();" class="btn btn-secondary">Back</button>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="login-container text-center">
+            <h2>Create Account</h2>
+            <form id="signupForm" onsubmit="return validateForm()" action="/user-signup" method="POST">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-3">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Client-Side Validation -->
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            if (username === "") {
+                alert("Username must be filled out");
+                return false;
+            }
+            if (username.length < 4) {
+                alert("Username must be at least 4 characters long");
+                return false;
+            }
+            if (email === "") {
+                alert("Email must be filled out");
+                return false;
+            }
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+            if (password.length < 4) {
+                alert("Password must be at least 4 characters long");
+                return false;
+            }
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+            return true;
+        }
+        
+        // Function to validate email format using regular expression
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>
