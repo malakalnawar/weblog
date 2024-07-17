@@ -1,4 +1,4 @@
-# DNW Midterm
+# Weblog
 
 This is a blogging web application. It is password protected, and all passwords are stored using Argon2 salting and hashing for user security and privacy. It can be used as a personal blog with one author, or a hub of multiple blogs with many authors (you decide). The front-end styling was inspired by the 16-bit era, hence the use of simple colors and fonts.
 
