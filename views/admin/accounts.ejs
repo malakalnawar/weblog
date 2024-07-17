@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+</head>
+<body>
+
+    <!-- Include modals -->
+    <%- include('../modals.ejs') %>
+
+    <div class="container">
+
+        <!-- Header with title and user information -->
+        <header class="header d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
+            <h1 class="h3">Accounts</h1>
+            <span><%= session && session.user ? session.user.username : '' %></span>
+        </header>
+        
+        <!-- Navigation bar -->
+        <nav class="nav-bar mb-4 d-flex justify-content-between">
+            <a href="/home" class="btn btn-primary">Home</a>
+            <div class="justify-content-end">
+            <% if (session && session.user) { %>
+                <% if (session.user.role === 'admin' || session.user.role === 'author') { %>
+                    <a href="/author/dashboard" class="btn btn-primary me-2">Dashboard</a>
+                <% } %>
+                <% if (session.user.role === 'admin' || session.user.role === 'author') { %>
+                    <button type="button" class="btn btn-primary me-2" id="settingsBtn1">Settings</button>
+                <% } %>
+                <% if (session.user.role === 'user') { %>
+                    <button type="button" class="btn btn-primary me-2" id="settingsBtn2">Settings</button>
+                <% } %>
+                <button type="button" class="btn btn-warning" id="logoutBtn">Log Out</button>
+            <% } else { %>
+                <button type="button" class="btn btn-warning" id="loginBtn">Log In</button>
+            <% } %>
+            </div>
+        </nav>
+        
+        <!-- Admin Section -->
+        <section class="mb-4">
+            <h3>Admins</h3>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% admins.forEach(admin => { %>
+                        <tr>
+                            <td><%= admin.user_id %></td>
+                            <td><%= admin.username %></td>
+                            <td><%= admin.email %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Authors Section -->
+        <section class="mb-4">
+            <h3>Authors</h3>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% authors.forEach(author => { %>
+                        <tr>
+                            <td><%= author.user_id %></td>
+                            <td><%= author.username %></td>
+                            <td><%= author.email %></td>
+                            <td class="accounts-action-buttons">
+                                <% if (author.role == 'author') { %>
+                                    <button type="button" class="btn btn-sm btn-danger" id="delete-user-<%= author.user_id %>">Delete</button>
+                                <% } %>
+                            </td>                    
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Users Section -->
+        <section>
+            <h3>Users</h3>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.user_id %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.email %></td>
+                            <td class="accounts-action-buttons">
+                                <button type="button" class="btn btn-sm btn-primary" id="set-as-author-<%= user.user_id %>">Set As Author</button>
+                                <button type="button" class="btn btn-sm btn-danger" id="delete-user-<%= user.user_id %>">Delete</button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Footer section -->
+        <footer class="footer"></footer>
+
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="/public/scripts.js"></script>
+</body>
+</html>

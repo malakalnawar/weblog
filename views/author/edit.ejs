@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header with title -->
+        <header class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
+            <h1 class="h3">Editor</h1>
+        </header>
+
+        <!-- Back button -->
+        <button onclick="window.history.back();" class="btn btn-secondary mb-3">Back</button>
+
+        <!-- Form for editing or creating an article/draft -->
+        <form id="editor">
+            <section class="mb-4">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <% if (article) { %>
+                        <input type="text" class="form-control" name="title" placeholder="Enter the title" value="<%= article.title %>">
+                    <% } else if (draft) { %>
+                        <input type="text" class="form-control" name="title" placeholder="Enter the title" value="<%= draft.title %>">
+                    <% } else { %>
+                        <input type="text" class="form-control" name="title" placeholder="Enter the title">
+                    <% } %>
+                </div>
+            </section>
+
+            <section class="mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <% if (article) { %>
+                            <p class="card-text"><strong>Created:</strong> <%= dateFns.format(new Date(article.created_at), 'yyyy-MM-dd HH:mm:ss') %></p>
+                            <p class="card-text"><strong>Last Modified:</strong> <%= dateFns.format(new Date(article.updated_at), 'yyyy-MM-dd HH:mm:ss') %></p>
+                            <p class="card-text" id="reference" hidden ><%= article.article_id %></p>
+                            <p class="card-text" id="type" hidden >article</p>
+                        <% } else if (draft) { %>
+                            <p class="card-text"><strong>Created:</strong> <%= dateFns.format(new Date(draft.created_at), 'yyyy-MM-dd HH:mm:ss') %></p>
+                            <p class="card-text"><strong>Last Modified:</strong> <%= dateFns.format(new Date(draft.updated_at), 'yyyy-MM-dd HH:mm:ss') %></p>
+                            <p class="card-text" id="reference" hidden ><%= draft.draft_id %></p>
+                            <p class="card-text" id="type" hidden >draft</p>
+                        <% } else { %>
+                            <p class="card-text"><strong>Created:</strong> <%= dateFns.format(new Date(), 'yyyy-MM-dd HH:mm:ss') %></p>
+                            <p class="card-text"><strong>Last Modified:</strong> <%= dateFns.format(new Date(), 'yyyy-MM-dd HH:mm:ss') %></p>
+                            <p class="card-text" id="reference" hidden >0</p>
+                            <p class="card-text" id="type" hidden >draft</p>
+                        <% } %>
+                        <p class="card-text"><strong>Status:</strong> <%= status %></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-4">
+                <div class="mb-3">
+                    <label for="subtitle" class="form-label">Subtitle</label>
+                    <% if (article) { %>
+                        <input type="text" class="form-control" name="subtitle" placeholder="Enter the subtitle" value="<%= article.subtitle %>">
+                    <% } else if (draft) { %>
+                        <input type="text" class="form-control" name="subtitle" placeholder="Enter the subtitle" value="<%= draft.subtitle %>">
+                    <% } else { %>
+                        <input type="text" class="form-control" name="subtitle" placeholder="Enter the subtitle">
+                    <% } %>
+                </div>
+            </section>
+            
+            <section class="mb-4">
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content</label>
+                    <% if (article) { %>
+                        <textarea class="form-control" name="content" rows="10" placeholder="Enter the content"><%= article.content %></textarea>
+                    <% } else if (draft) { %>
+                        <textarea class="form-control" name="content" rows="10" placeholder="Enter the content"><%= draft.content %></textarea>
+                    <% } else { %>
+                        <textarea class="form-control" name="content" rows="10" placeholder="Enter the content"></textarea>
+                    <% } %>
+                </div>
+                <button type="button" class="btn btn-primary" id="saveBtn">Save</button>
+            </section>
+        </form>
+
+        <!-- Footer section -->
+        <footer class="footer"></footer>
+
+    </div>
+    <!-- Bootstrap JavaScript -->
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="/public/scripts.js"></script>
+</body>
+</html>
